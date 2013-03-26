@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="../css/bionlp-st.css" type="text/css">    
+    <title>BioNLP Shared Task 2013 - Genia Event task</title>
+  </head>
+<body>
+
+<div id="header">
+<div id="stitle"><a href="http://2013.bionlp-st.org/">BioNLP Shared Task 2013</a></div>
+<div id="title"><a href="http://bionlp-st.dbcls.jp/GE/">Genia Event Extraction (GE) Task</a></div>
+<div id="slogan">"A shared task of literature mining for knowledge of NF&kappa;B pathway."</div>
+
+<table class="menu">
+<tr>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Overview">Overview</a></td>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Details">Details</a></td>
+<td><a href="../eval-development/">Dev. Evaluation</a></td>
+</tr>
+</table>
+</div>
+
+<div id="main">
+
+<div id="notice">Currently, IE evaluation is available in the same form as BioNLP-ST 2011.</div>
+<div id="notice">Additional evaluation (KB evaluation) will become available shortly.</div>
+
+<h1>Development set evaluation</h1>
+
+<ul>
+<li>This service is available at any time for the convenience of system development.</li>
+<ul>
+<li>Be careful not to overfit your model to the development data set.</li>
+</ul>
+</ul>
+
+<form name="form1" method="post"
+      action="eval.cgi"
+      enctype="multipart/form-data">
+
+<h2>Step 1. Provide your registered e-mail address</h2>
+
+<p>E-mail address: <input type="text" name="email" maxlength="50" size="25" /></p>
+
+<ul>
+<li>To have your e-mail address registered, subscribe to the <span class="pname">bionlp-st</span> list.<br/>
+<ul>
+<li>E-mail to majordomo (at) bionlp-st (dot) org with "subscribe bionlp-st" in the body of the message.</li>
+</ul>
+</ul>
+
+<h2>Step 2. Upload the tarball file including your predicted .a2 files</h2>
+
+<p>File to Upload: <input type="file" name="file" maxlength="50" size="25" /></p>
+
+<ul>
+<li>Tar and gzip all your predicted .a2 files, and submit the tarball file, e.g., <span class="pname">filename.tar.gz</span>.</li>
+</ul>
+
+<h2>Step 3. Submit and wait for the evaluation results</h2>
+
+<p><input style="width:15em; height:2em" type="submit" name="submit" value="Submit" /></p>
+
+<ul>
+<li>Evaluation may take time. Please wait for a while after submission.</li>
+</ul>
+
+</form>
+
+</div>
+
+</body>
+</html>

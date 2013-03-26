@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="../css/bionlp-st.css" type="text/css">    
+    <title>BioNLP Shared Task 2013 - Genia Event task</title>
+  </head>
+<body>
+
+<div id="header">
+<div id="stitle"><a href="http://2013.bionlp-st.org/">BioNLP Shared Task 2013</a></div>
+<div id="title"><a href="http://bionlp-st.dbcls.jp/GE/">Genia Event Extraction (GE) Task</a></div>
+<div id="slogan">"A shared task of literature mining for knowledge of NF&kappa;B pathway."</div>
+
+<table class="menu">
+<tr>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Overview">Overview</a></td>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Details">Details</a></td>
+<td><a href="../eval-development/">Dev. Evaluation</a></td>
+</tr>
+</table>
+</div>
+
+<div id="main">
+
+<h1>IE Evaluation</h1>
+
+<p>The IE evaluation for the GE task of BioNLP-ST 2013 is based on
+the <b>equality of events</b> as defined below. That is, each
+submitted event will be judged either as correct or incorrect as a
+whole (as opposed to e.g. measuring each event argument assignment
+separately).  Evaluation results are reported using the standard
+precision/recall/f-score metrics.</p>
+
+<p>The evaluation thus places an emphasis on getting entire events
+right, as opposed to just those arguments that can be predicted most
+confidently.</p>
+
+<h2>Event equality</h2>
+
+<p>There are several aspects to the equality of events, including
+event type, the identification of the words expressing the event
+(event trigger expression), the event participants and arguments, and,
+in turn, the correctness of the entities and events that these refer
+to.  We will apply a number of different correctness criteria:</p>
+
+<ul>
+<li><b>strict equality</b>: for an event to be correct, it
+must match an event of the gold standard annotation in all of the
+above-mentioned aspects.</li>
+<li><b>approximate boundary matching</b>: the spans of identified entities and
+event trigger expressions are allowed to differ from the exact gold spans.</li>
+<li><b>approximate recursive matching</b>: the requirement that for an
+event to be correct, events that it refers to must also be correct is
+relaxed.</li>
+</ul>
+
+<p>Detailed definitions are given below. Note that all criteria
+require the type of the event to be correct and that all participants
+and arguments are correct. Combinations of the criteria may also be
+considered.</p>
+
+<a name="strict"></a>
+<h2>Strict equality</h2>
+
+
+<p>The strict equality criteria require that for a submitted event to
+match a gold standard event:</p>
+
+<ul>
+<li>1) The event types are the same</li>
+<li>2) The event trigger expressions are the same</li>
+<li>3) For each event argument, there is a matching argument where the referenced entities/events match:
+<ul>
+<li>3.1) Types are the same (both entities and events)</li>
+<li>3.2) The text spans (entities) / trigger expressions (events) are the same</li>
+<li>3.3) The arguments of events are the same (recursively following this definition)</li>
+</ul></li>
+</ul>
+
+<p>(In (3), "for each event argument" should be understood to refer to
+both the answer and gold, and "matching argument" to gold or answer
+(resp.): there can be no extra or missing arguments.)
+
+<p>Two entity / trigger expression spans (beg<sub>1</sub>, end<sub>1</sub>) and (beg<sub>2</sub>, end<sub>2</sub>), are the same iff beg<sub>1</sub> = beg<sub>2</sub> and end<sub>1</sub> = end<sub>2</sub>.</p>
+
+<p>Although strict equality serves as the basis of the evalution
+criteria, considering the complexity of the problem and some of the
+features of the data, it may be viewed as impratically strict.  We
+therefore provide also the relaxed evaluation criteria which are
+defined considering the value of extracted information from a
+practical point of view.</p>
+
+<a name="approximate_span"></a>
+<h2>Approximate span matching</h2>
+
+
+<p>In detail, with differences to strict criteria <b>in bold</b>:</p>
+
+<ul>
+<li>1) The event types are the same</li>
+<li><b>2) The given event trigger expression is equivalent to that of the gold standard</b></li>
+<li>3) For each event argument, there is a matching argument where the referenced entities/events match:
+<ul>
+<li>3.1) Types are the same (both entities and events)</li>
+<li><b>3.2) The given text span (entities) / trigger expression (events) is equivalent to that of the gold standard</b></li>
+<li>3.3) The arguments of events are the same (recursively following this definition)</li>
+</ul></li>
+</ul>
+
+<p>For approximate matching, <b>equivalent</b> is defined as follows:
+a given span is equivalent to a gold span if it is entirely contained
+within an extension of the gold span by one word both to the left and
+to the right, that is, beg<sub>1</sub> &gt;= ebeg<sub>2</sub> and
+end<sub>1</sub> &lt;= eend<sub>2</sub>, where (beg<sub>1</sub>,
+end<sub>1</sub>) is the given span and (ebeg<sub>2</sub>,
+eend<sub>2</sub>) is the extended gold span.</p>
+
+<p>Thus, for example, the given span (underlined)
+<i>A <u>plays</u> role in [...]</i> is equivalent to the (hypothetical) gold span
+<i>A plays <u>role</u> in [...]</i> as it is contained in the extended span
+<i>A <u>plays role in</u> [...]</i>.</p>
+
+<a name="approximate_span_without_trigger_matching"></a>
+<h2>Approximate span matching without event trigger matching</h2>
+
+<p>It is the same with Approximate span matching except it ignores event triggers.</p>
+
+
+<a name="approximate_recursive"></a>
+<h2>Approximate recursive matching</h2>
+
+
+<p>In detail, with difference to strict criteria <b>in bold</b>:</p>
+
+<ul>
+<li>1) The event types are the same</li>
+<li>2) The event trigger expressions are the same</li>
+<li>3) For each event argument, there must be a matching argument where the referenced entities/events match:
+<ul>
+<li>3.1) Types are the same (both entities and events)</li>
+<li>3.2) The text spans (entities) / trigger expressions (events) are the same</li>
+<li><b>3.3) The arguments of events match partially</b></li>
+</ul></li>
+</ul>
+
+<p>For <b>partial matching</b>, only Theme arguments are considered. Referred events are 
+thus considered to match even if they differ in non-Theme arguments.</p>
+
+
+<a name="decomposition"></a>
+<h2>Event Decomposition Mode</h2>
+
+<p>Many events are expressed with more than one argument, e.g.
+<i>binding of multiple proteins</i> or <i>regulation with a theme and a cause</i>.
+Such events are inherently more difficult to extract than events with a single argument.
+In the Event decomposion mode, events with multiple arguments are decomposed into multiple single-argument events.</p>
+
+<p>Specifically, in this mode, each multi-argument event
+<pre>
+t-entity-for-event-trigger, arg1-type:arg1-value, arg2-type:arg2-value, ...
+</pre>
+is decomposed into single-argument events
+<pre>
+t-entity-for-event-trigger, arg1-type:arg1-value
+t-entity-for-event-trigger, arg2-type:arg2-value
+...
+</pre></p>
+<p>The resulting single-argument events are treated as separate events in evaluation, thus allowing
+recognition of partially correct events and awarding the recognition of complex events more highly.
+Note that the Event decomposition mode is used in combination with other matching modes.</p>
+
+
+</div>
+</body>
+</html>

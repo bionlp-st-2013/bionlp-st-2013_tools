@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="../css/bionlp-st.css" type="text/css">    
+    <title>BioNLP Shared Task 2013 - Genia Event task</title>
+  </head>
+<body>
+
+<div id="header">
+<div id="stitle"><a href="http://2013.bionlp-st.org/">BioNLP Shared Task 2013</a></div>
+<div id="title"><a href="http://bionlp-st.dbcls.jp/GE/">Genia Event Extraction (GE) Task</a></div>
+<div id="slogan">"A shared task of literature mining for knowledge of NF&kappa;B pathway."</div>
+
+<table class="menu">
+<tr>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Overview">Overview</a></td>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Details">Details</a></td>
+<td><a href="../eval-development/">Dev. Evaluation</a></td>
+</tr>
+</table>
+</div>
+
+
+<div id="main">
+
+<h1>Development set evaluation</h1>
+
+<p><TMPL_VAR NAME=MESSAGE></p>
+
+<h2>Task 1</h2>
+
+<h3><a href="evaluation.html#strict">Strict Matching</a></h3>
+<pre><TMPL_VAR NAME=RESULT1></pre>
+
+<h3><a href="evaluation.html#approximate_span">Approximate Span</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a></h3>
+<pre><TMPL_VAR NAME=RESULT1SP></pre>
+
+<h3><a href="evaluation.html#approximate_span_without_trigger_matching">Approximate Span without Event Trigger Matching</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a></h3>
+<pre><TMPL_VAR NAME=RESULT1ZP></pre>
+
+<h3><a href="evaluation.html#approximate_span">Approximate Span</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a>/<a href="evaluation.html#decomposition">Decomposition</a></h3>
+<pre><TMPL_VAR NAME=RESULT1SPD></pre>
+
+<h3><a href="evaluation.html#approximate_span_without_trigger_matching">Approximate Span without Event Trigger Matching</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a>/<a href="evaluation.html#decomposition">Decomposition</a></h3>
+<pre><TMPL_VAR NAME=RESULT1ZPD></pre>
+
+
+<h2>Task 2</h2>
+
+<h3><a href="evaluation.html#strict">Strict Matching</a>/<a href="evaluation.html#decomposition">Decomposition</a></h3>
+<pre><TMPL_VAR NAME=RESULT2D></pre>
+
+<h3><a href="evaluation.html#approximate_span">Approximate Span</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a>/<a href="evaluation.html#decomposition">Decomposition</a></h3>
+<pre><TMPL_VAR NAME=RESULT2SPD></pre>
+
+<h3><a href="evaluation.html#approximate_span_without_trigger_matching">Approximate Span without Event Trigger Matching</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a>/<a href="evaluation.html#decomposition">Decomposition</a></h3>
+<pre><TMPL_VAR NAME=RESULT2ZPD></pre>
+
+
+<h2>Task 3</h2>
+
+<h3><a href="evaluation.html#strict">Strict Matching</a></h3>
+<pre><TMPL_VAR NAME=RESULT3></pre>
+
+<h3><a href="evaluation.html#approximate_span">Approximate Span</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a></h3>
+<pre><TMPL_VAR NAME=RESULT3SP></pre>
+
+<h3><a href="evaluation.html#approximate_span_without_trigger_matching">Approximate Span without Event Trigger Matching</a>/<a href="evaluation.html#approximate_recursive">Approximate Recursive</a></h3>
+<pre><TMPL_VAR NAME=RESULT3ZP></pre>
+
+
+<h2>Thank you for your participation!!</h2>
+
+</div>
+</body>
+</html>
