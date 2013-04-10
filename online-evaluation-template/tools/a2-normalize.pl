@@ -74,17 +74,26 @@ foreach my $fname (@ARGV) {
 		    if (($aid =~ /^E/) && !$eanno{$aid}) {warn "unkown reference: [$fstem] $eid => $aid\n"}
 		    if ($aid eq $eid) {warn "self-reference: [$fstem] $eid => $aid\n"; next}
 
-		    if (($atype =~ /^Theme/) || ($atype eq 'Cause')) {
-			if ($etype =~ /egulation$/) {
-			    if (!$panno{$aid} && !$eanno{$aid}) {warn "Only a protein or a event can be a Theme or a Cause for a regulation event: [$fstem] $eid => $atype:$aid\n"}
-			} # if
-			else {
-			    if (!$panno{$aid}) {warn "Only a protein can be a Theme for a non-regulation event: [$fstem] $eid => $atype:$aid\n"}
-			} # else
+		    if ($atype =~ /^Theme/) {
+				if ($etype =~ /egulation$/) {
+				    if (!$panno{$aid} && !$eanno{$aid}) {warn "Only a protein or a event can be a Theme or a Cause of a regulation event: [$fstem] $eid => $atype:$aid\n"}
+				} # if
+				else {
+				    if (!$panno{$aid}) {warn "Only a protein can be a Theme of a non-regulation event: [$fstem] $eid => $atype:$aid\n"}
+				} # else
+		    } # if
+
+		    elsif ($atype eq 'Cause') {
+				if (($etype =~ /egulation$/) || ($etype =~ /^Protein_modification$/) || ($etype =~ /hosphorylation$/) || ($etype =~ /biquitination$/) || ($etype =~ /cetylation$/)){
+				    if (!$panno{$aid} && !$eanno{$aid}) {warn "Only a protein or a event can be a Cause of a Protein_modification event: [$fstem] $eid => $atype:$aid\n"}
+				} # if
+				# else {
+				#     if (!$panno{$aid}) {warn "Only a regulation or protein modification event can have a cause argument: [$fstem] $eid => $atype:$aid\n"}
+				# } # else
 		    } # if
 
 		    else {
-			if (!$tanno{$aid} || (${$tanno{$aid}}[0] ne 'Entity')) {warn "A secondary argument has to reference to a 'Entity' type t-entity: [$fstem] $eid => $atype:$aid\n"}
+				if (!$tanno{$aid} || (${$tanno{$aid}}[0] ne 'Entity')) {warn "A secondary argument has to reference to a 'Entity' type t-entity: [$fstem] $eid => $atype:$aid\n"}
 		    } # else
 		} # foreach
 

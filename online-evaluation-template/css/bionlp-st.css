@@ -75,6 +75,7 @@ table.menu {
     margin:0px 5px;
     font-size:medium;
     color:red;
+    text-decoration:blink;
 }
 
 #main {
@@ -201,13 +202,24 @@ td {
     text-align:left;
 }
 
+table.form {
+    margin-left:30px;
+    width:500px;
+}
+
+.form th {
+    width:140px;
+    font-weight:normal;
+    text-align:left;
+}
+
+
 table.ann {
     text-align: center;
 }
 
 .ann th {
     text-align: center;
-
 }
 
 .ann td {

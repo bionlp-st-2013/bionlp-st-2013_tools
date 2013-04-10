@@ -1,0 +1,58 @@
+QUESTIONNAIRE
+
+1. Team
+
+1-1. Team name (e.g. "University of BioNLP")
+
+
+
+1-2. Team name abbreviation, in no more than 8 characters (e.g. "UBioNLP")
+
+
+
+1-3. Team members.  Name / Affiliation, ...
+
+
+
+1-4. Team organization (e.g. 1 linguist, 2 biologists, 1 bioinformatician)
+You can define individual specializations freely, using for example machine
+learning, NLP, linguist, biologist, bioinformatician, informatician,
+...
+
+
+
+1-5. Please describe the primary motivation of your participation to this
+task.  (e.g.  "I am a machine learning specialist and want to see if my
+method works with this task" or "We have a similar problem and want to
+develop a working solution.")
+
+
+
+2. Method.
+
+2-1. Please describe which tools, resources and methods you used for
+processing the data, including feature generation for machine learning. 
+(e.g.  "dependency parsing using GDep, stemming using Porter")
+
+
+
+2-2. Please describe briefly which methods you used for performing the task,
+describing each processing stage separately.  (e.g. "dictionary/CRF-based
+tagger for trigger detection, SVM classifier for argument detection, custom
+rule-based system for postprocessing")
+
+
+
+3. Resources
+
+3-1. Please describe external resources you used for the development of your
+system.  (e.g.  UniProt, Entrez Gene, Mesh, ...)
+
+
+
+3-2. Please describe any resources you developed yourself.  (e.g. 
+"dictionary of event triggers.  The entries were collected from the
+training data.  Each entry has been stemmed by Porter stemmer.")
+
+
+

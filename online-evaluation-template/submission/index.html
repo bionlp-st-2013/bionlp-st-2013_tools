@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <link rel="stylesheet" href="../css/bionlp-st.css" type="text/css">    
+    <title>BioNLP Shared Task 2013 - Genia Event task</title>
+  </head>
+<body>
+
+<div id="header">
+<div id="stitle"><a href="http://2013.bionlp-st.org/">BioNLP Shared Task 2013</a></div>
+<div id="title"><a href="http://bionlp-st.dbcls.jp/GE/">Genia Event Extraction (GE) Task</a></div>
+<div id="slogan">"A shared task of literature mining for knowledge of NF&kappa;B pathway."</div>
+
+<table class="menu">
+<tr>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Overview">Overview</a></td>
+<td><a href="http://bionlp.dbcls.jp/redmine/projects/bionlp-st-ge-2013/wiki/Details">Details</a></td>
+<td><a href="../eval-development/">Dev. Evaluation</a></td>
+<td><a href="../submission/">Submission</a></td>
+</tr>
+</table>
+</div>
+
+
+<div id="main">
+<div id="notice">This submission site is under testing.</div>
+<div id="notice">It may behave strangely. Please do not use it yet.</div>
+
+
+<h1>Final Submission on Test Data</h1>
+<ul>
+<li>Submission deadline is <font color="red">13rd April 23:59PM (UTC-11)</font>.
+<li>While you can submit many times, <font color="red">only the last submission</font> per a team will be regarded as its final submission.
+<li>The evaluation results will not be immediately shown. It will be delievered soon after the deadline.
+<li>Please download and fill the <a href="questionnaire.txt">questionnaire</a> and include it in your submission.
+<ul>
+<li><font color="red">Please preserve the filename, <span class="pname">questionnaire.txt</span>, as it is.</font></li>
+</ul>
+</ul>
+
+<form name="form1" method="post"
+      action="submit.cgi"
+      enctype="multipart/form-data">
+
+<h2>Step 1. Provide the correspondence information</h2>
+
+<table class="form">
+
+<tr>
+<th>Name :</th>
+<td><input type="text" name="name" maxlength="50" size="40" required /></td>
+</tr>
+
+<tr>
+<th>Affiliation :</th>
+<td><input type="text" name="affiliation" maxlength="50" size="40" required /></td>
+</tr>
+
+<tr>
+<th>E-mail address :</th>
+<td><input type="email" name="email" maxlength="50" size="40" placeholder="your registered e-mail address" required /></td>
+</tr>
+</table>
+
+<h2>Step 2. Upload your submission</h2>
+
+<p>File to Upload: <input type="file" name="file" maxlength="50" size="25" required /></p>
+
+<ul>
+<li>Tar and gzip
+<ul>
+<li>all your predicted .a2 files,</li>
+<li>and your edited <span class="pname">questionnaire.txt</span> file</li>
+</ul>
+<li>and submit the tarball file,
+<ul>
+<li>e.g., <span class="pname">filename.tar.gz</span>.</li>
+</ul>
+</ul>
+
+<h2>Step 3. Submit</h2>
+<p><input style="width:15em; height:2em" type="submit" name="submit" value="Submit" /></p>
+
+</form>
+
+</p>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+1. create 'work' and 'collect' directories and make them readable and writable to anyone
+
+	> chmod 777 work collect
+
+2. make the log files writable to anyone
+
+	> chmod 666 *.log
+
+3. put the gold annotation files into the 'gold' directory
+   **DO NOT put *.a2 files for security**
+
+	> tar -xvzf bionlp-st_2013_XXX.tar.gz --directory=gold
+	> rm gold/*.a2
+
+4. list the filename of all the files to be received in the file, 'files.lst'
+   (all the *.a2 files and 'questionnaire.txt' file)
+
+	> ls gold/*.a1 | cut -d'/' -f2 | sed "s/\.a1/.a2/" > files.lst
+	> echo 'questionnaire.txt' >> files.lst
+
+5. modify the submit.cgi script.
+	- the 'checker' (format validator)
+	- the e-mail setting (in the end of the script)

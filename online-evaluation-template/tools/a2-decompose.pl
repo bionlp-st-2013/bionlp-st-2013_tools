@@ -39,18 +39,18 @@ foreach my $fname (@ARGV) {
 		    my ($etype, $tid) = split ':', shift @arg;
 
 		    if ($#arg > 0) {
-			# decompose and store
-			for (my $i=0; $i<=$#arg; $i++) {
-			    my ($atype, $aid) = split (':', $arg[$i]);
-			    $atype =~ s/([a-zA-Z])[0-9]+$/$1/;
-			    $eanno{"$eid-$i"} = [$etype, $tid, $atype, $aid];
-			} # for
-			$split{$eid} = $#arg + 1;
+				# decompose and store
+				for (my $i=0; $i<=$#arg; $i++) {
+				    my ($atype, $aid) = split (':', $arg[$i]);
+				    $atype =~ s/([a-zA-Z])[0-9]+$/$1/;
+				    $eanno{"$eid-$i"} = [$etype, $tid, $atype, $aid];
+				} # for
+				$split{$eid} = $#arg + 1;
 		    } # if
 		    else {
-			my ($atype, $aid) = split (':', $arg[$0]);
-			$atype =~ s/([a-zA-Z])[0-9]+$/$1/;
-			$eanno{$eid} = [$etype, $tid, $atype, $aid];
+				my ($atype, $aid) = split (':', $arg[$0]);
+				$atype =~ s/([a-zA-Z])[0-9]+$/$1/;
+				$eanno{$eid} = [$etype, $tid, $atype, $aid];
 		    } # else
 		} # elsif
 
@@ -65,65 +65,66 @@ foreach my $fname (@ARGV) {
     } # while
     close (FILE);
 
-    ## sort events
-    my @elist = ();
-    my %remain = ();
-    foreach (keys %eanno) {$remain{$_} = 1}
+	# foreach (keys %eanno) {
+	# 	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
+	# }
+	# warn "===\n";
 
-    while (%remain) {
-		my $changep = 0;
-		my %remain_s = ();
-		foreach my $eid (keys %remain) {$eid =~ s/-[0-9]+$//; $remain_s{$eid} = 1}
+	# sort events so that dependent ones come later
+    my @elist = ();
+    my %remain = map { $_ => 1 } sort keys %eanno;
+ 
+	while (%remain) {
+		my $pick = '';
+
+		my %remain_s = map { s/-[0-9]+$//; $_ => 1 } keys %remain;
 
 		foreach my $eid (keys %remain) {
 		    my $aid = ${$eanno{$eid}}[3];
 		    if (($aid =~ /^E/) && $remain_s{$aid}) {}
-		    else {
-			push @elist, $eid;
-			delete $remain{$eid};
-			$changep = 1
-		    } # else
+		    else {$pick = $eid; last}
 		} # foreach
-		if (!$changep) {
-		    if ($opt{v}) {warn "circular reference: [$fstem]\n"; foreach (keys %remain) {printevent($_)}; warn "=====\n"}
-		    push @elist, keys %remain;
+
+		if ($pick) {
+			push @elist, $pick;
+			delete $remain{$pick};
+		} # if
+
+		else {
+	    	warn "==cyclic references found in '$fstem':\n";
+	    	foreach (keys %remain) {printevent($_, @{$eanno{$_}})}
+	    	warn "=======================================\n";
+		    push @elist, sort keys %remain;
 		    %remain = ();
 		} # if
     } # while
 
-#    sub printevent {
-#	my ($eid) = @_;
-#	my ($etype, $tid, $atype, $aid) = @{$eanno{$eid}};
-#	print "$eid\t$etype:$tid $atype:$aid\n";
-#    }
-
-#    foreach (@elist) {
-#	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
-#    }
-#    warn "===\n";
-
+	# foreach (@elist) {
+	# 	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
+	# }
+	# warn "===\n";
 
     ## transitive duplication
     my @nelist = ();
     foreach my $eid (@elist) {
-	my ($etype, $tid, $atype, $aid) = @{$eanno{$eid}};
-	if ($split{$aid}) {
-	    my $i = 0;
-	    foreach my $naid (&expand_aid($aid, \%split)) {
-			$eanno{"$eid-$i"} = [$etype, $tid, $atype, $naid];
-			push @nelist, "$eid-$i";
-			$i++;
-	    } # foreach
-	    delete $eanno{$eid};
-	    $split{$eid} = $i; #warn "$eid\t$i===\n";
-	} # if
-	else {push @nelist, "$eid"}
+		my ($etype, $tid, $atype, $aid) = @{$eanno{$eid}};
+		if ($split{$aid}) {
+		    my $i = 0;
+		    foreach my $naid (&expand_aid($aid, \%split)) {
+				$eanno{"$eid-$i"} = [$etype, $tid, $atype, $naid];
+				push @nelist, "$eid-$i";
+				$i++;
+		    } # foreach
+		    delete $eanno{$eid};
+		    $split{$eid} = $i; #warn "$eid\t$i===\n";
+		} # if
+		else {push @nelist, "$eid"}
     } # foreach
 
-#    foreach (@nelist) {
-#	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
-#    } # foreach
-#    warn "===\n";
+	# foreach (@nelist) {
+	# 	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
+	# } # foreach
+	# warn "===\n";
 
     # remove duplicates
     @elist = @nelist;
@@ -144,10 +145,10 @@ foreach my $fname (@ARGV) {
 		else {$eventexp{$eventexp} = $eid; push @nelist, $eid}
     } # foreach
 
-#    foreach (@nelist) {
-#	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
-#   } # foreach
-#    warn "===\n";
+	# foreach (@nelist) {
+	# 	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
+	# } # foreach
+	# warn "===\n";
 
     # remove less meaningful regulation chains
     @elist  = @nelist;
@@ -162,10 +163,10 @@ foreach my $fname (@ARGV) {
 		else {push @nelist, $eid}
     } # foreach
 
-#    foreach (@nelist) {
-#	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
-#    }
-#    warn "===\n";
+	# foreach (@nelist) {
+	# 	warn "$_\t", join (", ", @{$eanno{$_}}), "\n";
+	# }
+	# warn "===\n";
 
     @elist  = @nelist;
     @nelist = sort {$a cmp $b} @elist;
@@ -184,6 +185,11 @@ foreach my $fname (@ARGV) {
     close (FILE);
 } # foreach
 
+
+sub printevent {
+	my ($eid, $etype, $tid, $atype, $aid) = @_;
+	warn "$eid\t$etype:$tid $atype:$aid\n";
+}
 
 sub expand_aid {
     my ($aid, $rh_split) = @_;
