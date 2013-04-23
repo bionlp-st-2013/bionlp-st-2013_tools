@@ -1,0 +1,21 @@
+1. create 'work' directory and make it readable and writable to anyone
+
+	> chmod 777 work
+
+2. make the log files writable to anyone
+	(submit.log, error.log, time.log)
+
+	> chmod 666 *.log
+
+3. put the gold annotation files into the 'gold' directory
+
+	> tar -xvzf bionlp-st_2013_XXX.tar.gz --directory=gold
+
+4. list the filename of all the files to be received in the file, 'files.lst'
+
+	> ls gold/*.a2 | cut -d'/' -f2 > files.lst
+
+5. modify the eval.cgi script.
+	- the 'checker' (format validator)
+	- the 'evaluator' (evaluation script)
+	- the results
